@@ -18,15 +18,15 @@ function App(props) {
         <Route exact path="/dogs/:name"
           render={routeProps => {
               const dogRouteName = routeProps.match.params.name;
-              const dogArr = props.dogs.filter(dog => dog.name.toLowerCase() === dogRouteName.toLowerCase());
-              if (dogArr.length === 0) return <Redirect to="/" />;
+              const dogObj = props.dogs.find(dog => dog.name.toLowerCase() === dogRouteName.toLowerCase());
+              if (dogObj.length === 0) return <Redirect to="/" />;
               return (
                 <Dog 
                   {...routeProps}
-                  name={dogArr[0].name}
-                  age={dogArr[0].age}
-                  image={dogArr[0].src}
-                  about={dogArr[0].facts}
+                  name={dogObj.name}
+                  age={dogObj.age}
+                  image={dogObj.src}
+                  about={dogObj.facts}
                 />
               );
             }

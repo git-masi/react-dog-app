@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Dog = props => {
   const about = () => props.about.map((sentence, index) => <p className="card-text" key={index}>{sentence}</p>);
@@ -10,7 +11,7 @@ const Dog = props => {
         <h5 className="card-title">{props.name}</h5>
         <p className={props.age}></p>
         {about()}
-        <a href="#" className="btn btn-primary">Go somewhere</a>
+        <Link to="/dogs" className="btn btn-primary">All Dogs</Link>
       </div>
     </div>
   )

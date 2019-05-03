@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './Dog.css';
 
 const Dog = props => {
   const about = () => props.about.map((sentence, index) => <p className="card-text" key={index}>{sentence}</p>);

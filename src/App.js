@@ -12,25 +12,26 @@ function App(props) {
 
   return (
     <div>
-      <Navbar />
+      <Navbar links={props.dogs}/>
       <Switch>
         <Route exact path="/dogs" render={() => <Dogs dogs={props.dogs}/>}/>
-        <Route exact path="/dogs/:name" render={routeProps => {
-                const dogRouteName = routeProps.match.params.name;
-                const dogArr = props.dogs.filter(dog => dog.name.toLowerCase() === dogRouteName.toLowerCase());
-                if (dogArr.length === 0) return <Redirect to="/" />;
-                return (
-                  <Dog 
-                    {...routeProps}
-                    name={dogArr[0].name}
-                    age={dogArr[0].age}
-                    image={dogArr[0].src}
-                    about={dogArr[0].facts}
-                  />
-                );
-              }
+        <Route exact path="/dogs/:name"
+          render={routeProps => {
+              const dogRouteName = routeProps.match.params.name;
+              const dogArr = props.dogs.filter(dog => dog.name.toLowerCase() === dogRouteName.toLowerCase());
+              if (dogArr.length === 0) return <Redirect to="/" />;
+              return (
+                <Dog 
+                  {...routeProps}
+                  name={dogArr[0].name}
+                  age={dogArr[0].age}
+                  image={dogArr[0].src}
+                  about={dogArr[0].facts}
+                />
+              );
             }
-          />
+          }
+        />
         <Route render={() => <h1>Oops, page not found</h1>} />
       </Switch>
     </div>

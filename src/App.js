@@ -13,27 +13,31 @@ function App(props) {
   return (
     <div>
       <Navbar links={props.dogs}/>
-      <Switch>
-        <Route exact path="/dogs" render={() => <Dogs dogs={props.dogs}/>}/>
-        <Route exact path="/dogs/:name"
-          render={routeProps => {
-              const dogRouteName = routeProps.match.params.name;
-              const dogObj = props.dogs.find(dog => dog.name.toLowerCase() === dogRouteName.toLowerCase());
-              if (dogObj.length === 0) return <Redirect to="/" />;
-              return (
-                <Dog 
-                  {...routeProps}
-                  name={dogObj.name}
-                  age={dogObj.age}
-                  image={dogObj.src}
-                  about={dogObj.facts}
-                />
-              );
+      <div className="container">
+        <Switch>
+          <Route exact path="/dogs" render={() => <Dogs dogs={props.dogs}/>}/>
+          <Route exact path="/dogs/:name"
+            render={routeProps => {
+                const dogRouteName = routeProps.match.params.name;
+                const dogObj = props.dogs.find(dog => dog.name.toLowerCase() === dogRouteName.toLowerCase());
+                if (dogObj.length === 0) return <Redirect to="/" />;
+                return (
+                  <div className="container mt-3 mb-3">
+                    <Dog 
+                      {...routeProps}
+                      name={dogObj.name}
+                      age={dogObj.age}
+                      image={dogObj.src}
+                      about={dogObj.facts}
+                    />
+                  </div>
+                );
+              }
             }
-          }
-        />
-        <Route render={() => <h1>Oops, page not found</h1>} />
-      </Switch>
+          />
+          <Route render={() => <h1>Oops, page not found</h1>} />
+        </Switch>
+      </div>
     </div>
   );
 }

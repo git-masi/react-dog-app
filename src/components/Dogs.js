@@ -7,14 +7,19 @@ const Dogs = props => {
   }
 
   const dogs = props.dogs.map((dog, index) => (
-    <div className="text-center" key={index}>
-      <img src={dog.src} className="rounded-circle" alt={dog.name} onClick={() => clickHandler(dog.name)}/>
+    <div className="col-4" key={index}>
+      <img src={dog.src} className="rounded-circle img-fluid" alt={dog.name} onClick={() => clickHandler(dog.name)}/>
     </div>
   ))
 
   return (
-    <div>
-      {dogs}
+    <div className="Dogs">
+      <h1 className="display-1 text-center">Meet Our Pups</h1>
+      <div className="container">
+        <div className="row">
+          {dogs}      
+        </div>
+      </div>
     </div>
   )
 }
